@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -50,6 +51,11 @@ func (k *Kassa) Ping() (bool, error) {
 // и получает готовый экземпляр Payment в ответ.
 func (k *Kassa) SendPaymentConfig(config *PaymentConfig) (*Payment, error) {
 	paymentBytes, err := json.Marshal(config)
+
+	if k.Verbose {
+		log.Println(string(paymentBytes))
+	}
+
 	if err != nil {
 		return nil, err
 	}
@@ -96,6 +102,9 @@ func (k *Kassa) handleResponse(resp *http.Response) (*Payment, error) {
 	responseBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
+	}
+	if k.Verbose {
+		log.Println(string(responseBytes))
 	}
 
 	p := Payment{}
