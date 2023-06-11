@@ -18,10 +18,10 @@ type Embedded struct {
 	Type ConfirmationType `json:"type"`
 	// Язык интерфейса, писем и смс, которые будет видеть или получать пользователь. Формат соответствует ISO/IEC 15897.
 	// Возможные значения: ru_RU, en_US. Регистр важен.
-	Locale string `json:"locale"`
+	Locale string `json:"locale,omitempty"`
 
 	// Токен для инициализации платежного виджета ЮKassa.
-	ConfirmationToken string `json:"confirmation_token"`
+	ConfirmationToken string `json:"confirmation_token,omitempty"`
 }
 
 type External struct {
