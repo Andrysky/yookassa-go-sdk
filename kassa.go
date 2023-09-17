@@ -127,7 +127,7 @@ func (k *Kassa) AcceptSpending(id string) error {
 
 // DeclineSpending совершает отмену списания средств, когда платёж перешёл в статус waiting_for_capture.
 func (k *Kassa) DeclineSpending(id string) error {
-	_, err := k.sendPostRequest(PaymentsEndpoint+id+"/"+CaptureEndpoint, nil)
+	_, err := k.sendPostRequest(PaymentsEndpoint+id+"/"+CancelEndpoint, nil)
 	if err != nil {
 		return err
 	}

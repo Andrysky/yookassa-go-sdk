@@ -1,9 +1,10 @@
 package yookassa
 
 const (
-	APIEndpoint = "https://api.yookassa.ru/v3/"
+	APIEndpoint      = "https://api.yookassa.ru/v3/"
 	PaymentsEndpoint = "payments/"
-	CaptureEndpoint = "capture"
+	CaptureEndpoint  = "capture"
+	CancelEndpoint   = "cancel"
 )
 
 const (
@@ -11,6 +12,7 @@ const (
 )
 
 type Status string
+
 const (
 	Pending           Status = "pending"
 	WaitingForCapture Status = "waiting_for_capture"
