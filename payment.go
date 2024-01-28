@@ -178,6 +178,19 @@ type Payment struct {
 	} `json:"authorization_details"`
 }
 
+// https://yookassa.ru/developers/using-api/webhooks
+type Event struct {
+	Type   string `json:"type"`
+	Event  string `json:"event"`
+	// Object interface{} `json:"object"` // я не знаю как это лучше сделать
+}
+
+type EventPayment struct {
+	Type   string `json:"type"`
+	Event  string `json:"event"`
+	Object Payment `json:"object"`
+}
+
 type Item struct {
 	Description              string `json:"description,omitempty"`
 	Quantity                 string `json:"quantity,omitempty"`

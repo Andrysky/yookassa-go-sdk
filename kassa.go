@@ -96,6 +96,26 @@ func (k *Kassa) GetPayment(id string) (*Payment, error) {
 	return p, nil
 }
 
+func (k *Kassa) GetResponseEvent(body string) (*Event, error) {
+	event := Event{}
+	err := json.Unmarshal([]byte(body), &event)
+	if err != nil {
+		return nil, err
+	}
+
+	return &event, nil
+}
+
+func (k *Kassa) GetResponseEventPayment(body string) (*EventPayment, error) {
+	p := EventPayment{}
+	err := json.Unmarshal([]byte(body), &p)
+	if err != nil {
+		return nil, err
+	}
+
+	return &p, nil
+}
+
 // handleResponse парсит ответ в экземпляр Payment.
 func (k *Kassa) handleResponse(resp *http.Response) (*Payment, error) {
 	var responseBytes []byte
