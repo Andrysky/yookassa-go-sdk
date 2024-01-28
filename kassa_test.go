@@ -92,7 +92,7 @@ func TestKassa_GetPaymentErrorsControl(t *testing.T) {
 	}
 }
 
-func TestKassa_GetPaymentErrorsControl(t *testing.T) {
+func TestKassa_GetResponseEventPayment1(t *testing.T) {
 	k := NewKassa(shopid, key)
 	body := `{
 		"type": "notification",
@@ -137,16 +137,14 @@ func TestKassa_GetPaymentErrorsControl(t *testing.T) {
 	  }`
 
 	event, err := k.GetResponseEvent(body)
-	if err == nil {
+	if err != nil {
 		t.Error("Error is not handled.")
 	}
 
 	if event.Event == "payment.waiting_for_capture"{
-		payment, err := k.GetResponseEventPayment(body)
-		if err == nil {
+		_, err := k.GetResponseEventPayment(body)
+		if err != nil {
 			t.Error("Error is not handled.")
 		}
-
-		fmt.Println(payment)
 	}
 }
